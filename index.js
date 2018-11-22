@@ -122,7 +122,7 @@ SamsungTV.prototype._setOn = function(on, callback) {
         "Powering OFF is in progress, Turning ON via 'KEY_POWER' command"
       );
       accessory.TV.isAlive(function(success) {
-        if (!success) {
+        if (success) {
           accessory.log("Can't reach TV, Trying via 'Wake On Lan'");
           wol.wake(accessory.mac, function(err) {
             if (err) {
@@ -167,7 +167,7 @@ SamsungTV.prototype._setOn = function(on, callback) {
       callback();
     } else {
       accessory.TV.isAlive(function(success) {
-        if (!success) {
+        if (success) {
           accessory.log("TV is already OFF");
           callback();
         } else {
@@ -197,7 +197,7 @@ SamsungTV.prototype._setMute = function(mute, callback) {
 
   accessory.log("Sending mute command to TV");
   accessory.TV.isAlive(function(success) {
-    if (!success) {
+    if (success) {
       accessory.log("TV is OFF");
       callback();
     } else {
@@ -226,7 +226,7 @@ SamsungTV.prototype._setChannel = function(state, callback) {
   var channel = accessory.channel.toString();
   accessory.log("Setting Channel " + channel + " on TV");
   accessory.TV.isAlive(function(success) {
-    if (!success) {
+    if (success) {
       accessory.log("TV is OFF");
       callback();
     } else {
@@ -278,7 +278,7 @@ SamsungTV.prototype._setCustom = function(state, callback) {
       " command(s) to TV"
   );
   accessory.TV.isAlive(function(success) {
-    if (!success) {
+    if (success) {
       accessory.log("TV is OFF");
 
       callback();
