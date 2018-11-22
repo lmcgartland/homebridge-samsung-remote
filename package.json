@@ -4,8 +4,8 @@
   "description": "Homebridge plugin for Samsung TVs 2016 and newer",
   "author": "nitaybz",
   "dependencies": {
-    "wake_on_lan": ">=0.0.3",
-    "samsung-tv-remote": ">=1.0.0"
+    "samsung-remote": "^1.4.1",
+    "wake_on_lan": ">=0.0.3"
   },
   "keywords": [
     "homebridge-plugin",
