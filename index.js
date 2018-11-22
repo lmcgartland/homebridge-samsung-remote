@@ -134,7 +134,7 @@ SamsungTV.prototype._setOn = function(on, callback) {
           });
         } else {
           accessory.TV.send("KEY_POWER", function(message) {
-            console.log(message);
+            accessory.log(message);
           });
           accessory.log("TV powered ON");
           callback();
@@ -172,7 +172,7 @@ SamsungTV.prototype._setOn = function(on, callback) {
           callback();
         } else {
           accessory.TV.send("KEY_POWER", function(message) {
-            console.log(message);
+            accessory.log(message);
           });
           accessory.timer_off = setTimeout(function() {
             accessory.timer_off = null;
@@ -202,7 +202,7 @@ SamsungTV.prototype._setMute = function(mute, callback) {
       callback();
     } else {
       accessory.TV.send("KEY_MUTE", function(message) {
-        console.log(message);
+        accessory.log(message);
       });
       accessory.log("Mute command sent successfully");
       callback();
@@ -231,20 +231,20 @@ SamsungTV.prototype._setChannel = function(state, callback) {
       callback();
     } else {
       accessory.TV.send("KEY_CHUP", function(message) {
-        console.log(message);
+        accessory.log(message);
       });
       var i = 0;
       setTimeout(function() {
         var intervalCommands = setInterval(function() {
           if (i < channel.length) {
             accessory.TV.send("KEY_" + channel.charAt(i), function(message) {
-              console.log(message);
+              accessory.log(message);
             });
             i++;
           } else {
             clearInterval(intervalCommands);
             accessory.TV.send("KEY_ENTER", function(message) {
-              console.log(message);
+              accessory.log(message);
             });
             accessory.log("Channel" + channel + " is set");
           }
@@ -286,7 +286,7 @@ SamsungTV.prototype._setCustom = function(state, callback) {
       // Command as array
       if (Array.isArray(accessory.command)) {
         accessory.TV.send(accessory.command[0], function(message) {
-          console.log(message);
+          accessory.log(message);
         });
         accessory.log(accessory.command[0] + " command sent");
         callback();
@@ -294,7 +294,7 @@ SamsungTV.prototype._setCustom = function(state, callback) {
         var repeatSend = setInterval(function() {
           if (counter < accessory.command.length) {
             accessory.TV.send(accessory.command[counter], function(message) {
-              console.log(message);
+              accessory.log(message);
             });
             accessory.log(accessory.command[counter] + " command sent");
             counter++;
@@ -305,7 +305,7 @@ SamsungTV.prototype._setCustom = function(state, callback) {
         // Command as string
       } else {
         accessory.TV.send(accessory.command, function(message) {
-          console.log(message);
+          accessory.log(message);
         });
         accessory.log(accessory.command + " command sent");
         callback();
@@ -313,7 +313,7 @@ SamsungTV.prototype._setCustom = function(state, callback) {
         var repeatSend = setInterval(function() {
           if (counter < accessory.repeat) {
             accessory.TV.send(accessory.command, function(message) {
-              console.log(message);
+              accessory.log(message);
             });
             counter++;
           } else {
